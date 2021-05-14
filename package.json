@@ -4,8 +4,7 @@
   "description": "Serverless webpack example using Typescript",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "AWS_PROFILE=m-dekmak sls offline"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@middy/core": "1.5.2",
