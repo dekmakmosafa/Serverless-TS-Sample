@@ -7,8 +7,6 @@ import {UserService} from "../services/user.service";
 import {UserLoginInterface} from "../interfaces/user-login.interface";
 import {UserConfirmSignUpInterface} from "../interfaces/user-confirmSignUp.interface";
 
-//todo:Create the user register,login,logoug flow , create te amdin create delete disable user flow
-
 const userService = new UserService();
 
 const login: APIGatewayProxyHandler = middy(async (_event, _context) => {
