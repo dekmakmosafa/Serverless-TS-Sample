@@ -5,8 +5,11 @@ import middy from "@middy/core";
 import {getTokenInfo} from "../../../Middlewares/token.middleware";
 import {CreateForumInputParamsInterface} from "../interfaces/createForumInputParams.interface";
 import {ForumService} from "../services/forum.service";
+import {createForumInputSchema} from "../schemas/createForumInputSchema";
+import {BodyValidationUtil} from "../../../Utils/body_validation.util";
 
-const forumService = new ForumService()
+const forumService = new ForumService();
+const bodyValidationUtil = new BodyValidationUtil()
 
 const createForum: APIGatewayProxyHandler = middy(async (_event, _context) => {
 
@@ -14,6 +17,9 @@ const createForum: APIGatewayProxyHandler = middy(async (_event, _context) => {
         const tokenInfo = await getTokenInfo(_event);
 
         const forum_body: CreateForumInputParamsInterface = _event.body.forum_body;
+
+        bodyValidationUtil.validateInput(createForumInputSchema, forum_body);
+
         const res = await forumService.createForum(tokenInfo.credentials, tokenInfo.user, forum_body);
 
         return getResponse(200, res);
